@@ -1,0 +1,11 @@
+const express = require('express');
+const { createSubject, addTeachers, addClasses, removeTeachers, removeClasses } = require('../controllers/subjectController');
+const {isAdminOrClassTeacher} = require('../middlewares/isAdminOrClassTeacher');
+const {isAdmin} = require('../middlewares/isAdmin');
+const router = express.Router();
+router.post('/create-subject',isAdminOrClassTeacher,createSubject);
+router.post('/assign-teachers',isAdmin,addTeachers);
+router.post('/add-classes',isAdmin,addClasses);
+router.post('/remove-teachers',isAdmin,removeTeachers);
+router.post('/remove-classes',isAdmin,removeClasses);
+module.exports = router;    
